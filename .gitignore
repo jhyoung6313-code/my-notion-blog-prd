@@ -1,0 +1,27 @@
+# 의존성
+node_modules/
+
+# 환경 변수 (실제 비밀 값은 절대 커밋하지 않는다)
+.env
+.env.local
+.env.*.local
+
+# 빌드 산출물
+dist/
+build/
+
+# Prisma 생성물
+backend/prisma/migrations/dev.db*
+
+# 로그
+*.log
+npm-debug.log*
+
+# Claude Code 훅 런타임 로그 (스크립트·설정은 커밋, 로그는 제외)
+.claude/edit-log.txt
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

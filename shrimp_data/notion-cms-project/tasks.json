@@ -1,0 +1,442 @@
+{
+  "tasks": [
+    {
+      "id": "a9a16e7d-ce1b-4ffa-a81e-01036bca04d7",
+      "name": "[P1] Next.js 15 프로젝트 골격 생성 및 디렉터리 구조 확정",
+      "description": "blog/ 디렉터리에 Next.js 15(App Router)+TypeScript 프로젝트를 생성하고 app/ lib/ components/ types/ 구조를 확정한다. .gitignore에 .env.local이 포함되어 키가 Git에 추적되지 않음을 재확인한다.",
+      "notes": "기존 루트 frontend/backend는 task-manager 잔재로 무관. 충돌 회피 위해 반드시 blog/ 하위에 생성한다.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/package.json",
+          "type": "CREATE",
+          "description": "Next.js 프로젝트 매니페스트"
+        },
+        {
+          "path": ".gitignore",
+          "type": "REFERENCE",
+          "description": ".env.local 미추적 확인"
+        },
+        {
+          "path": "docs/ROADMAP.md",
+          "type": "REFERENCE",
+          "description": "Phase 1 할 작업·완료기준"
+        }
+      ],
+      "implementationGuide": "1) blog/ 위치에 create-next-app으로 Next.js 15 App Router+TS 생성(npx create-next-app@latest blog --typescript --app --eslint --no-src-dir). 2) blog/lib, blog/components, blog/types 디렉터리 생성. 3) 루트 .gitignore의 .env.local 항목 재확인(이미 존재). 4) tsconfig 경로 별칭(@/*) 확인.",
+      "verificationCriteria": "blog/에서 npm run dev 실행 시 빈 페이지가 정상 구동된다. .env.local이 Git에 추적되지 않는다(git status에 노출 없음).",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "f1575aa9-dcb4-4301-803c-eeaa0fe8d49f",
+      "name": "[P1] Tailwind·shadcn/ui·Lucide 설치 및 기본 레이아웃 구성",
+      "description": "Tailwind CSS, shadcn/ui, Lucide React를 설치·설정하고 app/layout.tsx에 헤더/푸터 자리를 둔 기본 레이아웃 골격을 만든다.",
+      "notes": "이 단계의 레이아웃은 placeholder 골격. 실제 공통 컴포넌트는 Phase2에서 구현해 끼운다.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a9a16e7d-ce1b-4ffa-a81e-01036bca04d7"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/layout.tsx",
+          "type": "TO_MODIFY",
+          "description": "기본 레이아웃 골격"
+        },
+        {
+          "path": "blog/tailwind.config.ts",
+          "type": "CREATE",
+          "description": "Tailwind 설정"
+        },
+        {
+          "path": "blog/components.json",
+          "type": "CREATE",
+          "description": "shadcn/ui 설정"
+        }
+      ],
+      "implementationGuide": "1) Tailwind 설정(create-next-app 옵션 또는 수동). 2) npx shadcn@latest init으로 shadcn/ui 초기화. 3) npm i lucide-react. 4) app/layout.tsx에 html/body·헤더/푸터 placeholder 영역 마련(실제 Header/Footer 컴포넌트는 Phase2에서 채움). 5) app/globals.css에 Tailwind 디렉티브 확인.",
+      "verificationCriteria": "npm run dev에서 Tailwind 유틸리티 클래스가 적용된 기본 레이아웃이 렌더링되고, shadcn 컴포넌트와 Lucide 아이콘을 import해 표시할 수 있다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "23a7f241-1ae1-4381-be23-d6761df42814",
+      "name": "[P1] Notion Integration 연동 및 환경변수·200 응답 확인",
+      "description": "Notion Integration을 생성해 블로그 DB에 연결하고, blog/.env.local에 NOTION_API_KEY·NOTION_DATABASE_ID를 설정한 뒤 임시 연동 스크립트로 Notion API 200 응답을 1회 이상 확인한다.",
+      "notes": "비밀키는 .env.local에만. 임시 스크립트는 검증용이며 페이지에서 직접 호출하지 않는다. PRD 5장 DB 스키마(Title/Slug/Category/Tags/Summary/Cover/Published/Status) 기준으로 DB 구성 확인.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a9a16e7d-ce1b-4ffa-a81e-01036bca04d7"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/.env.local",
+          "type": "CREATE",
+          "description": "Notion 비밀키(커밋 금지)"
+        },
+        {
+          "path": "docs/PRD.md",
+          "type": "REFERENCE",
+          "description": "5장 Notion DB 스키마·4.1 환경변수"
+        }
+      ],
+      "implementationGuide": "1) Notion에서 Integration 생성 후 토큰 발급, 블로그 DB를 Integration에 공유. 2) blog/.env.local에 NOTION_API_KEY, NOTION_DATABASE_ID 작성(커밋 금지). 3) npm i @notionhq/client. 4) 임시 스크립트(예: scripts/notion-ping.ts)로 databases.retrieve 또는 query 호출해 200 응답·DB 메타 콘솔 출력 확인. 이 스크립트는 Phase2에서 lib/notion.ts로 흡수되면 제거.",
+      "verificationCriteria": "임시 스크립트 실행 시 Notion API 200 응답과 실제 DB 메타데이터가 콘솔에 출력된다. .env.local은 Git에 추적되지 않는다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "d78f3739-488f-4c84-971b-872486186fe5",
+      "name": "[P2] 공통 타입·상수 정의 (types/post.ts, lib/constants.ts)",
+      "description": "Post/Category/Tag 인터페이스(types/post.ts)와 매직값을 제거할 상수(lib/constants.ts: REVALIDATE_SECONDS, STATUS 값, Notion 필드명 등)를 정의한다.",
+      "notes": "Notion 필드명·Status 문자열 등 매직 스트링을 전부 상수화해 lib/notion.ts가 참조하게 한다. PRD 5장 스키마와 필드명 일치 필수.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "23a7f241-1ae1-4381-be23-d6761df42814"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/types/post.ts",
+          "type": "CREATE",
+          "description": "Post/Category/Tag 타입"
+        },
+        {
+          "path": "blog/lib/constants.ts",
+          "type": "CREATE",
+          "description": "revalidate·Status·필드명 상수"
+        },
+        {
+          "path": "docs/PRD.md",
+          "type": "REFERENCE",
+          "description": "5장 DB 스키마 필드"
+        }
+      ],
+      "implementationGuide": "1) blog/types/post.ts에 Post(id, title, slug, category, tags, summary, cover, publishedAt, status), Category, Tag 인터페이스 정의. 2) blog/lib/constants.ts에 REVALIDATE_SECONDS=60, STATUS_PUBLISHED='발행됨', NOTION_FIELD_TITLE/SLUG/CATEGORY/TAGS/SUMMARY/COVER/PUBLISHED/STATUS 상수, 카테고리 enum 정의. UPPER_SNAKE_CASE 사용.",
+      "verificationCriteria": "types/post.ts·lib/constants.ts가 타입 에러 없이 컴파일되고, 정의된 필드명 상수가 PRD 5장 Notion DB 스키마와 일치한다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "68a1e639-ca32-40c7-87a6-93af7c935b4e",
+      "name": "[P2] Notion 데이터 페칭 레이어 lib/notion.ts 구현",
+      "description": "모든 Notion API 호출을 단일 경유하는 lib/notion.ts를 구현한다: getPublishedPosts(), getPostBySlug(slug), getPostContent(pageId), mapPageToPost(page). 서버 전용.",
+      "notes": "페이지/컴포넌트에서 Notion API 직접 호출 금지 — 반드시 이 모듈 경유. 임시 ping 스크립트는 이 모듈로 대체·제거. 레이트리밋 고려해 호출 최소화.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d78f3739-488f-4c84-971b-872486186fe5"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/lib/notion.ts",
+          "type": "CREATE",
+          "description": "Notion 데이터 페칭 레이어"
+        },
+        {
+          "path": "blog/types/post.ts",
+          "type": "DEPENDENCY",
+          "description": "반환 타입"
+        },
+        {
+          "path": "blog/lib/constants.ts",
+          "type": "DEPENDENCY",
+          "description": "필드명·Status 상수"
+        }
+      ],
+      "implementationGuide": "1) @notionhq/client로 notion 클라이언트 생성(env에서 키 로드, 서버 전용 'server-only'). 2) getPublishedPosts: databases.query에 Status=STATUS_PUBLISHED 필터 + Published 내림차순 정렬. 3) getPostBySlug: Slug 필터 단건. 4) getPostContent: blocks.children.list로 본문 블록. 5) mapPageToPost: Notion 페이지 속성→Post 타입 매핑(constants 필드명 사용). console.log로 데이터 확인 후 커밋 전 제거.",
+      "verificationCriteria": "lib/notion.ts 함수를 단독 호출(테스트 라우트/스크립트)하면 콘솔에 실제 발행 글 데이터가 Post 타입으로 매핑되어 출력된다. 모든 데이터 접근이 이 모듈을 거친다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "3dfc086c-d485-44cd-96ce-ffecff59e5bc",
+      "name": "[P2] 공통 UI 컴포넌트 및 본문 렌더링 모듈 구현",
+      "description": "Header/Footer/Layout/PostCard/CategoryTabs/TagBadge 공통 컴포넌트와 Notion 블록→JSX 본문 렌더링 모듈(react-notion-x 또는 notion-to-md 택1)을 구현한다.",
+      "notes": "PostCard/TagBadge/CategoryTabs는 Phase3~4의 목록·카테고리·태그·검색 페이지가 공유한다. 컴포넌트명 PascalCase, props 타입은 types/post.ts 재사용.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "68a1e639-ca32-40c7-87a6-93af7c935b4e"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/components/PostCard.tsx",
+          "type": "CREATE",
+          "description": "글 카드(공용)"
+        },
+        {
+          "path": "blog/components/Header.tsx",
+          "type": "CREATE",
+          "description": "헤더"
+        },
+        {
+          "path": "blog/components/Footer.tsx",
+          "type": "CREATE",
+          "description": "푸터"
+        },
+        {
+          "path": "blog/components/CategoryTabs.tsx",
+          "type": "CREATE",
+          "description": "카테고리 탭(공용)"
+        },
+        {
+          "path": "blog/components/TagBadge.tsx",
+          "type": "CREATE",
+          "description": "태그 배지(공용)"
+        },
+        {
+          "path": "blog/app/layout.tsx",
+          "type": "TO_MODIFY",
+          "description": "Header/Footer 끼움"
+        }
+      ],
+      "implementationGuide": "1) 본문 렌더링 라이브러리 결정: react-notion-x(폭넓은 블록·스타일 번들) vs notion-to-md(경량 MD). PRD 리스크상 블록 커버리지 위해 react-notion-x 우선 검토 후 택1. 2) blog/components에 Header, Footer, PostCard(props: post: Post), CategoryTabs(props: categories, active), TagBadge(props: tag) 작성. 3) app/layout.tsx의 placeholder를 Header/Footer로 교체. 4) PostCard는 더미 Post로 렌더 확인.",
+      "verificationCriteria": "PostCard에 더미 Post 데이터를 넣으면 카드가 정상 렌더링된다. Header/Footer가 layout에 적용되고, 본문 렌더링 모듈로 샘플 Notion 블록이 JSX로 변환된다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "3e777446-7b4a-4564-8ad5-6e5644afd58a",
+      "name": "[P3] 홈 글 목록 페이지 / 구현 (F-01, F-06, ISR)",
+      "description": "홈 / 에서 getPublishedPosts()로 발행 글을 가져와 PostCard 그리드로 표시하고, 반응형 레이아웃과 ISR(revalidate)을 적용한다.",
+      "notes": "데이터는 lib/notion.ts만 경유. 매직넘버 대신 REVALIDATE_SECONDS 사용. F-06 반응형은 Tailwind 브레이크포인트.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "3dfc086c-d485-44cd-96ce-ffecff59e5bc"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "홈 글 목록"
+        },
+        {
+          "path": "blog/lib/notion.ts",
+          "type": "DEPENDENCY",
+          "description": "getPublishedPosts"
+        },
+        {
+          "path": "blog/components/PostCard.tsx",
+          "type": "DEPENDENCY",
+          "description": "카드 그리드"
+        }
+      ],
+      "implementationGuide": "1) app/page.tsx(서버 컴포넌트)에서 getPublishedPosts() 호출. 2) PostCard를 반응형 grid(모바일1·태블릿2·데스크톱3열)로 배치. 3) export const revalidate = REVALIDATE_SECONDS로 ISR. 4) 글 없음 빈 상태 처리.",
+      "verificationCriteria": "Notion에 발행한 글이 홈에 카드로 나타나고, 모바일/데스크톱에서 그리드 레이아웃이 깨지지 않는다. 글 수정 후 revalidate 시간 내 반영된다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "d28ff13a-ae97-4a8f-8120-6bf57fc425a2",
+      "name": "[P3] 글 상세 페이지 /posts/[slug] 및 본문 렌더링 구현 (F-02, ISR)",
+      "description": "/posts/[slug]에서 getPostBySlug+getPostContent로 단건과 본문 블록을 가져와 제목·메타(카테고리·태그·발행일)와 본문(텍스트/이미지/코드)을 렌더링하고 ISR을 적용한다.",
+      "notes": "이미지는 Phase5에서 next/image 최적화. 미지원 블록은 폴백 처리(PRD 리스크). 모든 호출 lib/notion 경유.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "3e777446-7b4a-4564-8ad5-6e5644afd58a"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/posts/[slug]/page.tsx",
+          "type": "CREATE",
+          "description": "글 상세"
+        },
+        {
+          "path": "blog/lib/notion.ts",
+          "type": "DEPENDENCY",
+          "description": "getPostBySlug·getPostContent"
+        },
+        {
+          "path": "blog/components/TagBadge.tsx",
+          "type": "DEPENDENCY",
+          "description": "태그 표시"
+        }
+      ],
+      "implementationGuide": "1) app/posts/[slug]/page.tsx에서 params.slug로 getPostBySlug, 이어 getPostContent(pageId). 2) 헤더 메타에 CategoryTabs 대신 카테고리 라벨·TagBadge·발행일 표시. 3) Phase2 본문 렌더링 모듈로 블록→JSX(텍스트·이미지·코드). 4) revalidate=REVALIDATE_SECONDS. 5) 미발견 slug는 notFound().",
+      "verificationCriteria": "홈 카드를 클릭하면 상세 페이지에서 제목·메타와 본문(텍스트·이미지·코드)이 정상 렌더링된다. 존재하지 않는 slug는 404로 처리된다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "03d1fe4f-857f-4398-8d5c-8eb4905982d8",
+      "name": "[P3] 카테고리 필터 구현 (F-03, /category/[category])",
+      "description": "CategoryTabs로 홈 목록을 카테고리별로 좁히고, /category/[category] 경로에서 해당 카테고리 글만 필터링해 표시한다.",
+      "notes": "카테고리 값은 constants의 카테고리 enum 사용. PostCard·CategoryTabs 재사용. 이 작업 완료 시 MVP(Phase3) 완성.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d28ff13a-ae97-4a8f-8120-6bf57fc425a2"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/category/[category]/page.tsx",
+          "type": "CREATE",
+          "description": "카테고리별 목록"
+        },
+        {
+          "path": "blog/components/CategoryTabs.tsx",
+          "type": "DEPENDENCY",
+          "description": "탭 필터"
+        },
+        {
+          "path": "blog/app/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "홈에 탭 배치"
+        }
+      ],
+      "implementationGuide": "1) CategoryTabs를 홈 상단에 배치(전체+카테고리별 탭). 2) app/category/[category]/page.tsx에서 getPublishedPosts 결과를 해당 카테고리로 필터(또는 notion 쿼리 필터). 3) 활성 탭 표시. 4) revalidate 적용. 5) 빈 카테고리 처리.",
+      "verificationCriteria": "카테고리 탭을 누르면 해당 카테고리 글만 필터링되고, /category/[category] 경로가 동작한다. MVP 완료 기준(목록·상세·카테고리·반응형)을 모두 충족한다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "2c300eb0-58b5-4b31-b9b3-70e7612dd5e5",
+      "name": "[P4] 태그 필터(/tags/[tag])와 검색 구현 (F-04, F-05)",
+      "description": "/tags/[tag]에서 해당 태그 글만 표시(TagBadge 재사용)하고, 홈에 클라이언트 사이드 제목·요약 부분일치 검색을 추가한다.",
+      "notes": "검색은 서버 데이터를 props로 받아 클라이언트에서 필터(MVP 범위). 태그 값은 multi_select 매핑. 공통 컴포넌트 재사용.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "03d1fe4f-857f-4398-8d5c-8eb4905982d8"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/tags/[tag]/page.tsx",
+          "type": "CREATE",
+          "description": "태그별 목록"
+        },
+        {
+          "path": "blog/components/SearchBar.tsx",
+          "type": "CREATE",
+          "description": "클라이언트 검색"
+        },
+        {
+          "path": "blog/components/TagBadge.tsx",
+          "type": "DEPENDENCY",
+          "description": "태그 링크"
+        }
+      ],
+      "implementationGuide": "1) app/tags/[tag]/page.tsx에서 getPublishedPosts를 태그로 필터. 2) TagBadge 클릭 시 /tags/[tag]로 이동. 3) 홈에 검색 입력(클라이언트 컴포넌트): 발행 글 목록을 받아 title/summary 부분일치(소문자 비교) 필터. 4) 검색은 클라이언트 상태로만.",
+      "verificationCriteria": "태그 클릭 시 해당 태그 글만 표시되고, 검색창에 키워드 입력 시 제목·요약이 일치하는 글이 필터링된다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "d3b2e981-b7c5-40bb-aaa4-492e042c62b1",
+      "name": "[P4] SEO 메타태그와 다크모드 구현 (F-08, F-07)",
+      "description": "글별 generateMetadata로 OG 태그·메타 디스크립션을 생성하고, 라이트/다크 토글을 localStorage 영속화로 구현한다.",
+      "notes": "다크모드 토글은 클라이언트 컴포넌트. 메타는 서버에서 generateMetadata. 이 작업 완료 시 Phase4(추가 기능) 완성.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "2c300eb0-58b5-4b31-b9b3-70e7612dd5e5"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/app/posts/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "generateMetadata 추가"
+        },
+        {
+          "path": "blog/components/ThemeToggle.tsx",
+          "type": "CREATE",
+          "description": "다크모드 토글"
+        },
+        {
+          "path": "blog/app/layout.tsx",
+          "type": "TO_MODIFY",
+          "description": "테마 프로바이더"
+        }
+      ],
+      "implementationGuide": "1) app/posts/[slug]/page.tsx에 generateMetadata(글 제목·요약·커버로 title/description/openGraph 생성). 2) 다크모드: next-themes 또는 직접 구현(html class toggle + localStorage 영속화), Header에 토글 버튼(Lucide 아이콘). 3) Tailwind dark: 변형으로 스타일.",
+      "verificationCriteria": "각 글 상세 페이지가 고유한 OG 태그·메타 디스크립션을 갖고, 다크모드 토글이 새로고침 후에도 유지된다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "bb526f28-5de4-4824-bb60-b887f437f2fa",
+      "name": "[P5] 성능·반응형·접근성·캐시 최적화",
+      "description": "next/image·폰트·번들 최적화, 반응형 엣지케이스(긴 제목·이미지 없는 글) 마감, 접근성(시맨틱·alt·키보드) 점검, 레이트리밋/ISR 캐시 동작을 확인한다.",
+      "notes": "최적화는 모든 기능 완성 후 수행(이른 최적화 금지). Notion 이미지 도메인 next.config에 등록 필요.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d3b2e981-b7c5-40bb-aaa4-492e042c62b1"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/next.config.ts",
+          "type": "TO_MODIFY",
+          "description": "이미지 remotePatterns"
+        },
+        {
+          "path": "blog/app/posts/[slug]/page.tsx",
+          "type": "TO_MODIFY",
+          "description": "next/image 적용"
+        }
+      ],
+      "implementationGuide": "1) 본문·커버 이미지를 next/image로 전환(remotePatterns에 Notion S3 도메인 등록). 2) next/font로 폰트 최적화. 3) 번들 점검(불필요 의존성 제거). 4) 긴 제목 truncate·이미지 없는 글 폴백. 5) alt 텍스트·시맨틱 태그·키보드 내비 점검. 6) ISR 캐시로 레이트리밋 대응 확인.",
+      "verificationCriteria": "이미지가 next/image로 최적화되고, 긴 제목·이미지 없는 글에서 레이아웃이 깨지지 않으며, 접근성 점검 항목(alt·시맨틱·키보드)을 충족한다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    },
+    {
+      "id": "94d65dbd-342b-499f-b8c5-ffaebde8ea64",
+      "name": "[P5] Vercel 배포 및 Lighthouse 측정·보정",
+      "description": "Vercel에 프로젝트(blog/)를 연결해 환경변수 등록·ISR 설정으로 배포하고, Lighthouse를 측정해 성능 90점 이상이 되도록 보정한다.",
+      "notes": "비밀키는 Vercel 환경변수로만 등록(코드/로그 노출 금지). 모노레포 형태이므로 Vercel Root Directory를 blog/로 지정.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "bb526f28-5de4-4824-bb60-b887f437f2fa"
+        }
+      ],
+      "createdAt": "2026-06-11T04:18:26.980Z",
+      "updatedAt": "2026-06-11T04:18:26.980Z",
+      "relatedFiles": [
+        {
+          "path": "blog/.env.local",
+          "type": "REFERENCE",
+          "description": "Vercel 환경변수 대응 키 목록"
+        },
+        {
+          "path": "docs/ROADMAP.md",
+          "type": "REFERENCE",
+          "description": "Phase 5 완료기준·성공지표"
+        }
+      ],
+      "implementationGuide": "1) Vercel에 blog/ 디렉터리를 루트로 프로젝트 연결. 2) NOTION_API_KEY·NOTION_DATABASE_ID 환경변수 등록. 3) ISR revalidate 동작 확인. 4) 배포 후 홈·상세 Lighthouse 측정, 90점 미달 시 이미지/폰트/번들 보정. 5) Notion 발행→1분 내 반영 확인.",
+      "verificationCriteria": "공개 URL에서 코드 수정 없이 Notion 작성만으로 새 글이 1분 이내 발행되고, 홈·상세 페이지 Lighthouse 성능 90점 이상을 달성한다.",
+      "analysisResult": "Notion CMS 개인 개발 블로그를 docs/ROADMAP.md의 5단계 Phase(골격→공통→핵심→추가→최적화) 순서·의존성에 따라 구축한다. Next.js 15 앱은 blog/ 하위 디렉터리에 생성하며(app/ lib/ components/ types/는 blog/ 내부), 기존 task-manager 잔재(frontend/backend)와 격리한다. 목표: Notion(Status=발행됨)에 글을 쓰면 ISR로 자동 발행되는 블로그 완성. 제약: 모든 Notion 호출은 blog/lib/notion.ts 경유·서버 컴포넌트 전용, 비밀키는 .env.local 한정·커밋 금지, 2칸 들여쓰기·camelCase/PascalCase/UPPER_SNAKE_CASE·매직값 상수화. 각 작업의 verificationCriteria는 ROADMAP 완료 기준을 따른다."
+    }
+  ]
+}

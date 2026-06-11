@@ -1,7 +1,7 @@
 import { getPublishedPosts, isNotionConfigured } from "@/lib/notion";
 import { CATEGORY_ALL } from "@/lib/constants";
-import PostCard from "@/components/PostCard";
 import CategoryTabs from "@/components/CategoryTabs";
+import SearchablePosts from "@/components/SearchablePosts";
 
 // ISR 재검증 주기(초). Next.js 제약상 route segment config 는 정적 리터럴이어야 하므로
 // 상수(REVALIDATE_SECONDS) 대신 리터럴 60 을 사용한다. (= lib/constants.ts 의 값과 동일)
@@ -23,14 +23,8 @@ export default async function Home() {
           <code> NOTION_API_KEY</code> 와 <code>NOTION_DATABASE_ID</code> 를
           설정하세요.
         </p>
-      ) : posts.length === 0 ? (
-        <p className="text-black/50">아직 발행된 글이 없습니다.</p>
       ) : (
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
-        </div>
+        <SearchablePosts posts={posts} />
       )}
     </div>
   );

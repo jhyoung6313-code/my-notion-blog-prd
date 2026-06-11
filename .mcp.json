@@ -15,6 +15,16 @@
       "command": "npx",
       "args": ["@playwright/mcp@latest"],
       "env": {}
+    },
+    "shrimp-task-manager": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "mcp-shrimp-task-manager"],
+      "env": {
+        "DATA_DIR": "C:\\Users\\jhyou\\notion-cms-project\\shrimp_data",
+        "TEMPLATES_USE": "en",
+        "ENABLE_GUI": "false"
+      }
     }
   }
 }
